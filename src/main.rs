@@ -20,7 +20,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let vers = version_metadata["vers"].as_str().unwrap().to_string();
         versions.push(vers.clone());
     }
-    // Skip in
+
     let commit_hook_regex = Regex::new(r"(\s+- deno@).+").unwrap();
     let readme_regex = Regex::new(r"(\s+rev: ).+").unwrap();
 
@@ -58,6 +58,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .expect("Failed to write .pre-commit-hooks.yaml");
 
             // Commit the changes
+            println!("Committing changes for version {}", version);
             std::process::Command::new("git")
                 .arg("add")
                 .arg("README.md")
@@ -76,9 +77,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .status()
                 .expect("failed to execute process");
         }
-
-        break;
     }
-    // println!("{versions:#?}");
     Ok(())
 }
