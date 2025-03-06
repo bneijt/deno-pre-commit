@@ -2,4 +2,5 @@
     name: deno-fmt
     language: docker_image
     entry: denoland/deno
+    types: ["javascript", "ts"]
     args: ["fmt"]
