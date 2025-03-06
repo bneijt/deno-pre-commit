@@ -1,6 +1,16 @@
 -   id: deno-fmt
-    name: deno-fmt
-    language: docker_image
-    entry: denoland/deno
-    types: ["javascript", "ts"]
+    name: deno fmt
+    language: node
+    entry: deno
+    additional_dependencies:
+      - deno
+    types_or: ["javascript", "ts", "markdown", "json"]
     args: ["fmt"]
+-   id: deno-lint
+    name: deno lint
+    language: node
+    entry: deno
+    additional_dependencies:
+      - deno
+    types_or: ["javascript", "ts", "markdown", "json"]
+    args: ["lint"]

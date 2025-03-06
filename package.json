@@ -1,0 +1,19 @@
+{
+  "name": "deno-pre-commit",
+  "version": "0.0.1",
+  "description": "Deno pre-commit hook, stub package",
+  "homepage": "https://github.com/bneijt/deno-pre-commit#readme",
+  "bugs": {
+    "url": "https://github.com/bneijt/deno-pre-commit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bneijt/deno-pre-commit.git"
+  },
+  "license": "MIT",
+  "author": "Bram Neijt <bram@neijt.nl>",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {}
+}
