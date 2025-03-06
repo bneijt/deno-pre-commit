@@ -6,7 +6,7 @@ Not for public use yet, still have to be tested.
 
 ```
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 2.1.8
+    rev: 2.1.9
     hooks:
       - id: deno-fmt
       - id: deno-lint
