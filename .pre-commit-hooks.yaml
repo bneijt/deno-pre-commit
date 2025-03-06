@@ -3,7 +3,7 @@
     language: node
     entry: deno
     additional_dependencies:
-      - deno@0.37.0
+      - deno@0.37.1
     types_or: ["javascript", "ts", "markdown", "json"]
     args: ["fmt"]
 -   id: deno-lint
@@ -11,6 +11,6 @@
     language: node
     entry: deno
     additional_dependencies:
-      - deno@0.37.0
+      - deno@0.37.1
     types_or: ["javascript", "ts", "markdown", "json"]
     args: ["lint"]
