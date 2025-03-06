@@ -1,0 +1,5 @@
+-   id: deno-fmt
+    name: deno-fmt
+    language: docker_image
+    entry: denoland/deno
+    args: ["fmt"]
