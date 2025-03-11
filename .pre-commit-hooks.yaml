@@ -4,13 +4,33 @@
     entry: deno
     additional_dependencies:
       - deno@2.2.3
-    types_or: ["javascript", "ts", "markdown", "json"]
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     args: ["fmt"]
+    require_serial: true
+-   id: deno-fmt-check
+    name: deno fmt
+    language: node
+    entry: deno
+    additional_dependencies:
+      - deno@2.2.3
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
+    args: ["fmt", "--check"]
+    require_serial: true
 -   id: deno-lint
     name: deno lint
     language: node
     entry: deno
     additional_dependencies:
       - deno@2.2.3
-    types_or: ["javascript", "ts", "markdown", "json"]
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
+    args: ["lint", "--fix"]
+    require_serial: true
+-   id: deno-lint-check
+    name: deno lint
+    language: node
+    entry: deno
+    additional_dependencies:
+      - deno@2.2.3
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     args: ["lint"]
+    require_serial: true
