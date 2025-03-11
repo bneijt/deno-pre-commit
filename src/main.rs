@@ -1,6 +1,5 @@
 // Mirroring script
 // Takes the latest releases of the deno package and creates a tag for it
-//
 use regex::Regex;
 use reqwest;
 use serde_json;
@@ -13,6 +12,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?
         .text()
         .await?;
+
     // for each line in the jsonl file, parse json if possible and take vers attribute of the object
     let mut versions = Vec::new();
     for line in resp.lines() {
@@ -25,7 +25,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let readme_regex = Regex::new(r"(\s+rev: ).+").unwrap();
 
     for version in versions {
-        //Only clean versions
+        //Only clean versions, no -alpha or -pre
         if version.contains("-") {
             continue;
         }
@@ -40,7 +40,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .expect("failed to execute process")
             .success();
 
-        println!("Is {} already a tag? {}", version, git_tag_exists);
+        println!("Is '{}' already a tag? {}", version, git_tag_exists);
         if !git_tag_exists {
             // Update the README.md file and the .pre-commit-hooks.yaml file
             let readme = std::fs::read_to_string("README.md").expect("Failed to read README.md");
@@ -58,7 +58,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .expect("Failed to write .pre-commit-hooks.yaml");
 
             // Commit the changes
-            println!("Committing changes for version {}", version);
+            println!("Committing changes for version '{}'", version);
             std::process::Command::new("git")
                 .arg("add")
                 .arg("README.md")
@@ -68,7 +68,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             std::process::Command::new("git")
                 .arg("commit")
                 .arg("-m")
-                .arg(format!("Update to deno@{}", version))
+                .arg(format!("Use deno@{}", version))
                 .status()
                 .expect("failed to execute process");
             std::process::Command::new("git")
