@@ -19,7 +19,7 @@ Simple "_fix everything you see_" hook config is:
 ```
 repos:
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 1.10.3
+    rev: 1.11.0
     hooks:
       - id: deno-fmt
       - id: deno-lint
@@ -29,7 +29,7 @@ You can also opt for the "_only check, don't change_" approach:
 ```
 repos:
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 1.10.3
+    rev: 1.11.0
     hooks:
       - id: deno-fmt-check
       - id: deno-lint-check
@@ -43,7 +43,7 @@ To skip formatting with deno during pre-commit, update your pre-commit config to
 ```
 repos:
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 1.10.3
+    rev: 1.11.0
     hooks:
       - id: deno-fmt
         exclude_types: ["jupyter"]
