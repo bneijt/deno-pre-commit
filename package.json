@@ -1,7 +1,7 @@
 {
   "name": "deno-pre-commit",
   "version": "0.0.1",
-  "description": "Deno pre-commit hook, stub package",
+  "description": "Deno pre-commit hook, empty stub package",
   "homepage": "https://github.com/bneijt/deno-pre-commit#readme",
   "bugs": {
     "url": "https://github.com/bneijt/deno-pre-commit/issues"
