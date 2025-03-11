@@ -3,7 +3,7 @@
     language: node
     entry: deno
     additional_dependencies:
-      - deno@2.2.3
+      - deno@0.0.1
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     args: ["fmt"]
     require_serial: true
@@ -12,7 +12,7 @@
     language: node
     entry: deno
     additional_dependencies:
-      - deno@2.2.3
+      - deno@0.0.1
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     args: ["fmt", "--check"]
     require_serial: true
@@ -21,7 +21,7 @@
     language: node
     entry: deno
     additional_dependencies:
-      - deno@2.2.3
+      - deno@0.0.1
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     args: ["lint", "--fix"]
     require_serial: true
@@ -30,7 +30,7 @@
     language: node
     entry: deno
     additional_dependencies:
-      - deno@2.2.3
+      - deno@0.0.1
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     args: ["lint"]
     require_serial: true
