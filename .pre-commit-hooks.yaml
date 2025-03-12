@@ -2,39 +2,70 @@
     name: deno fmt
     description: "Reformat using deno."
     language: node
-    entry: deno
+    entry: deno fmt
     additional_dependencies:
-      - deno@2.2.3
+      - deno@2.2.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
-    args: ["fmt"]
     require_serial: true
 -   id: deno-fmt-check
     name: deno fmt
     description: "Check formatting using deno."
     language: node
-    entry: deno
+    entry: deno fmt --check
     additional_dependencies:
-      - deno@2.2.3
+      - deno@2.2.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
-    args: ["fmt", "--check"]
     require_serial: true
 -   id: deno-lint
     name: deno lint
     description: "Lint and fix linting issues using deno."
     language: node
-    entry: deno
+    entry: deno lint --fix
     additional_dependencies:
-      - deno@2.2.3
+      - deno@2.2.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
-    args: ["lint", "--fix"]
     require_serial: true
 -   id: deno-lint-check
     name: deno lint
     description: "Lint check using deno."
     language: node
-    entry: deno
+    entry: deno lint
     additional_dependencies:
-      - deno@2.2.3
+      - deno@2.2.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
-    args: ["lint"]
+    require_serial: true
+-   id: deno-fmt-system
+    name: deno fmt
+    description: "Reformat using local deno."
+    language: system
+    entry: deno fmt
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
+    require_serial: true
+-   id: deno-fmt-system-check
+    name: deno fmt check
+    description: "Check formatting using installed deno."
+    language: system
+    entry: deno fmt --check
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
+    require_serial: true
+-   id: deno-lint-system
+    name: deno lint
+    description: "Lint and fix linting issues using installed deno."
+    language: system
+    entry: deno lint --fix
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
+    require_serial: true
+-   id: deno-lint-system-check
+    name: deno lint
+    description: "Lint check using installed deno."
+    language: system
+    entry: deno lint
+    types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
+    require_serial: true
+-   id: deno-test-system
+    name: deno test
+    description: "Run tests using installed deno."
+    language: system
+    entry: deno test
+    pass_filenames: false
     require_serial: true

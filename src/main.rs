@@ -61,12 +61,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("Committing changes for version '{}'", version);
             std::process::Command::new("git")
                 .arg("add")
-                .arg("README.md")
-                .arg(".pre-commit-hooks.yaml")
+                .arg("--all")
                 .status()
                 .expect("failed to execute process");
             std::process::Command::new("git")
                 .arg("commit")
+                .arg("--no-verify")
                 .arg("-m")
                 .arg(format!("Use deno@{}", version))
                 .status()
