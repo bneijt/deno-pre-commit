@@ -8,27 +8,12 @@ use serde_json::Value;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // read jsonl list of metadata for deno
-    let resp = reqwest::get("https://index.crates.io/de/no/deno")
+    let resp: Value = reqwest::get("https://registry.npmjs.org/deno")
         .await?
-        .text()
+        .json()
         .await?;
 
-    // for each line in the jsonl file, parse json if possible and take vers attribute of the object
-    let mut versions = Vec::new();
-    for line in resp.lines() {
-        let version_metadata: Value = serde_json::from_str(line)?;
-        // Ignore yanked versions
-        if version_metadata["yanked"].as_bool().unwrap() {
-            continue;
-        }
-        let vers = version_metadata["vers"].as_str().unwrap().to_string();
-        //Only clean versions, no -alpha or -pre
-        if vers.contains("-") {
-            continue;
-        }
-        versions.push(vers.clone());
-    }
-
+    let versions: Vec<&String> = resp["versions"].as_object().unwrap().keys().collect();
     let readme_regex = Regex::new(r"(\s+rev: ).+").unwrap();
 
     for version in versions {
@@ -61,7 +46,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .status()
                 .expect("failed to execute process");
 
-            // Commit the changes
             println!("Committing changes for version '{}'", version);
             std::process::Command::new("git")
                 .arg("add")

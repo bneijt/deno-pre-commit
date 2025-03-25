@@ -16,6 +16,6 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
-    "deno": "1.46.0"
+    "deno": "2.2.5"
   }
 }
