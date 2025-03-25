@@ -13,7 +13,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .json()
         .await?;
 
-    let versions: Vec<&String> = resp["versions"].as_object().unwrap().keys().collect();
+    // We drop versions before 1.46.0 because there is no deno bin in those
+    let versions: Vec<&String> = resp["versions"]
+        .as_object()
+        .unwrap()
+        .keys()
+        .skip_while(|&x| x != &"1.46.0")
+        .collect::<Vec<_>>();
+
+    let commit_hook_regex = Regex::new(r"(\s+- deno@).+").unwrap();
     let readme_regex = Regex::new(r"(\s+rev: ).+").unwrap();
 
     for version in versions {
@@ -37,14 +45,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .to_string();
             std::fs::write("README.md", new_readme).expect("Failed to write README.md");
 
-            //Run npm to force a version
-            std::process::Command::new("npm")
-                .arg("install")
-                .arg("--save")
-                .arg("--save-exact")
-                .arg(format!("deno@{}", version))
-                .status()
-                .expect("failed to execute process");
+            let pre_commit_hooks = std::fs::read_to_string(".pre-commit-hooks.yaml")
+                .expect("Failed to read .pre-commit-hooks.yaml");
+            let new_pre_commit_hooks = commit_hook_regex
+                .replace_all(&pre_commit_hooks, format!("${{1}}{}", version).as_str())
+                .to_string();
+            std::fs::write(".pre-commit-hooks.yaml", new_pre_commit_hooks)
+                .expect("Failed to write .pre-commit-hooks.yaml");
 
             println!("Committing changes for version '{}'", version);
             std::process::Command::new("git")

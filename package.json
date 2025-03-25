@@ -12,10 +12,5 @@
   },
   "license": "MIT",
   "author": "Bram Neijt <bram@neijt.nl>",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {},
-  "dependencies": {
-    "deno": "2.2.5"
-  }
+  "type": "commonjs"
 }

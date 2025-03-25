@@ -3,6 +3,8 @@
     description: "Reformat using deno."
     language: node
     entry: deno fmt
+    additional_dependencies:
+      - deno@1.46.0
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-fmt-check
@@ -10,6 +12,8 @@
     description: "Check formatting using deno."
     language: node
     entry: deno fmt --check
+    additional_dependencies:
+      - deno@1.46.0
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-lint
@@ -17,6 +21,8 @@
     description: "Lint and fix linting issues using deno."
     language: node
     entry: deno lint --fix
+    additional_dependencies:
+      - deno@1.46.0
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-lint-check
@@ -24,6 +30,8 @@
     description: "Lint check using deno."
     language: node
     entry: deno lint
+    additional_dependencies:
+      - deno@1.46.0
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-fmt-system
