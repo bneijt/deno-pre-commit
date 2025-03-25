@@ -15,5 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {},
-  "dependencies": {}
+  "dependencies": {
+    "deno": "1.46.0"
+  }
 }

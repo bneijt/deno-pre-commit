@@ -17,18 +17,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut versions = Vec::new();
     for line in resp.lines() {
         let version_metadata: Value = serde_json::from_str(line)?;
+        // Ignore yanked versions
+        if version_metadata["yanked"].as_bool().unwrap() {
+            continue;
+        }
         let vers = version_metadata["vers"].as_str().unwrap().to_string();
+        //Only clean versions, no -alpha or -pre
+        if vers.contains("-") {
+            continue;
+        }
         versions.push(vers.clone());
     }
 
-    let commit_hook_regex = Regex::new(r"(\s+- deno@).+").unwrap();
     let readme_regex = Regex::new(r"(\s+rev: ).+").unwrap();
 
     for version in versions {
-        //Only clean versions, no -alpha or -pre
-        if version.contains("-") {
-            continue;
-        }
         // Check if the git tag for the version already exists
         let git_tag = format!("refs/tags/{}", version);
         let git_tag_exists = std::process::Command::new("git")
@@ -49,13 +52,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .to_string();
             std::fs::write("README.md", new_readme).expect("Failed to write README.md");
 
-            let pre_commit_hooks = std::fs::read_to_string(".pre-commit-hooks.yaml")
-                .expect("Failed to read .pre-commit-hooks.yaml");
-            let new_pre_commit_hooks = commit_hook_regex
-                .replace_all(&pre_commit_hooks, format!("${{1}}{}", version).as_str())
-                .to_string();
-            std::fs::write(".pre-commit-hooks.yaml", new_pre_commit_hooks)
-                .expect("Failed to write .pre-commit-hooks.yaml");
+            //Run npm to force a version
+            std::process::Command::new("npm")
+                .arg("install")
+                .arg("--save")
+                .arg("--save-exact")
+                .arg(format!("deno@{}", version))
+                .status()
+                .expect("failed to execute process");
 
             // Commit the changes
             println!("Committing changes for version '{}'", version);
