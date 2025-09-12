@@ -27,7 +27,7 @@ Simple "_fix everything you see_" hook config is:
 ```
 repos:
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 2.4.0
+    rev: 2.4.1
     hooks:
       - id: deno-fmt
       - id: deno-lint
@@ -38,7 +38,7 @@ You can also opt for the "_only check, don't change_" approach:
 ```
 repos:
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 2.4.0
+    rev: 2.4.1
     hooks:
       - id: deno-fmt-check
       - id: deno-lint-check
@@ -52,7 +52,7 @@ a snippet with the `exclude_types` attribute added to the `deno-fmt` hook.
 ```
 repos:
   - repo: https://github.com/bneijt/deno-pre-commit
-    rev: 2.4.0
+    rev: 2.4.1
     hooks:
       - id: deno-fmt
         exclude_types: ["jupyter"]
