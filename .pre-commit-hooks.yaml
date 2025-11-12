@@ -4,7 +4,7 @@
     language: node
     entry: deno fmt
     additional_dependencies:
-      - deno@2.5.4
+      - deno@2.5.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-fmt-check
@@ -13,7 +13,7 @@
     language: node
     entry: deno fmt --check
     additional_dependencies:
-      - deno@2.5.4
+      - deno@2.5.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-lint
@@ -22,7 +22,7 @@
     language: node
     entry: deno lint --fix
     additional_dependencies:
-      - deno@2.5.4
+      - deno@2.5.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-lint-check
@@ -31,7 +31,7 @@
     language: node
     entry: deno lint
     additional_dependencies:
-      - deno@2.5.4
+      - deno@2.5.5
     types_or: ["javascript", "jsx", "ts", "tsx", "markdown", "json"]
     require_serial: true
 -   id: deno-fmt-system
